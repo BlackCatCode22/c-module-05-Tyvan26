@@ -1,0 +1,35 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main() {
+    std::string filename = "example.txt";
+    std::ofstream outFile(filename);
+
+    if (!outFile) {
+        std::cerr << "Error opening file for writing!" << std::endl;
+        return 1;
+    }
+
+    // Writing to the file
+    outFile << "test file." << std::endl;
+    outFile << "output file test." << std::endl;
+    outFile.close();
+
+    // Reading from the file
+    std::ifstream inFile(filename);
+
+    if (!inFile) {
+        std::cerr << "Error opening file" << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    std::cout << "File content: " << std::endl;
+    while (std::getline(inFile, line)) {
+        std::cout << line << std::endl;
+    }
+
+    inFile.close();
+    return 0;
+}
